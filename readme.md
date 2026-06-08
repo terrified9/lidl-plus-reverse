@@ -8,6 +8,6 @@ Lidl Pay stopped working on my phone and I wanted to see if I could fix it.
 I used [HTTP Toolkit](https://httptoolkit.tech/) to intercept the network traffic between the app and the server. The endpoints are documented in the [endpoints.md](endpoints.md) file.
 
 ## TODO
+- [x] Make a basic Android app
 - [ ] Add coupon support
 - [ ] Add other regions
-- [ ] Make a basic Android app
