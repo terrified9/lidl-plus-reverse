@@ -69,3 +69,19 @@ Request Body:
   "paymentMethodId": "<payment_method_id>"
 }
 ```
+
+
+## 5) Activate Lidl Pay
+```http
+URL: https://payments.lidlplus.com/user-profiles/v3/lidl/ES/store/activate
+Method: PUT
+
+Headers:
+  Authorization: Bearer <token>
+  Accept-Encoding: gzip
+  User-Agent: okhttp/5.3.2
+  Version: 3.31.4
+  
+Request Body:
+  None
+```

@@ -58,6 +58,18 @@ def generate_qr_code(bearer, token, loyalty_id, payment_method_id):
     if response.status_code == 200:
         return response.json().get("paymentQR")
 
+def activate_lidl_pay(bearer):
+    url = "https://payments.lidlplus.com/user-profiles/v3/lidl/ES/store/activate"
+    headers = {
+        "Accept-Encoding": "gzip",
+        "Authorization": "Bearer " + bearer,
+        "User-Agent": "okhttp/5.3.2",
+        "Version": "3.31.4"
+    }
+    response = requests.put(url, headers=headers)
+    if response.status_code == 200:
+        return response.json().get("isActive")
+
 def show_qr_code(qr_code):
     qr = qrcode.QRCode(version=1, box_size=10, border=5)
     qr.add_data(qr_code)
@@ -81,6 +93,9 @@ def main():
 
     qr_code = generate_qr_code(bearer, pin_token, loyalty_id, payments_methods[0]["id"])
     print(qr_code)
+
+    is_activated = activate_lidl_pay(bearer)
+    print(is_activated)
 
     show_qr_code(qr_code)
 
