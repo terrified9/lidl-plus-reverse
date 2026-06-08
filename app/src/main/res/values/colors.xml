@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#F8F8F8</color>
+    <color name="text_primary">#111111</color>
+    <color name="text_secondary">#888888</color>
+    <color name="outline">#DDDDDD</color>
+    <color name="lidl_red">#E60A14</color>
+    <color name="lidl_yellow">#FFD700</color>
+</resources>

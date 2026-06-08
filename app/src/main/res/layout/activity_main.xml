@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fitsSystemWindows="true">
+
+    <!-- ═══════════════════════════════════════════
+         SCREEN 1 — LOGIN
+    ════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/screenLogin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="40dp"
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lidl Pay"
+            android:textSize="36sp"
+            android:letterSpacing="0.05"
+            android:textColor="@color/text_primary"
+            android:fontFamily="sans-serif-light"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign in to continue"
+            android:textSize="14sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="48dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Sign in with Lidl"
+            android:textSize="15sp"
+            android:letterSpacing="0.03"
+            style="@style/Widget.Material3.Button"
+            app:cornerRadius="12dp"
+            android:backgroundTint="@color/lidl_red"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="24dp"
+            android:indeterminateTint="@color/lidl_red"/>
+
+        <TextView
+            android:id="@+id/tvError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="@color/lidl_red"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+
+    <!-- ═══════════════════════════════════════════
+         SCREEN 2 — WEBVIEW (OAuth)
+    ════════════════════════════════════════════ -->
+    <FrameLayout
+        android:id="@+id/screenWebView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </FrameLayout>
+
+    <!-- ═══════════════════════════════════════════
+         SCREEN 3 — PIN ENTRY
+    ════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/screenPin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="40dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter PIN"
+            android:textSize="28sp"
+            android:textColor="@color/text_primary"
+            android:fontFamily="sans-serif-light"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvCardLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="@color/text_secondary"
+            android:visibility="gone"
+            android:layout_marginBottom="40dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:hintTextColor="@color/text_secondary"
+            app:boxStrokeColor="@color/outline"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="PIN"
+                android:inputType="numberPassword"
+                android:maxLength="6"
+                android:textSize="20sp"
+                android:letterSpacing="0.3"
+                android:textColor="@color/text_primary"
+                android:imeOptions="actionDone"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGenerate"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Generate QR"
+            style="@style/Widget.Material3.Button"
+            app:cornerRadius="12dp"
+            android:backgroundTint="@color/lidl_red"
+            android:layout_marginBottom="12dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign out"
+            android:textSize="13sp"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:textColor="@color/text_secondary"/>
+
+    </LinearLayout>
+
+    <!-- ═══════════════════════════════════════════
+         SCREEN 4 — QR CODE
+    ════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/screenQr"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scan to pay"
+            android:textSize="14sp"
+            android:textColor="@color/text_secondary"
+            android:letterSpacing="0.1"
+            android:textAllCaps="true"
+            android:layout_marginBottom="24dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_marginBottom="32dp">
+
+            <ImageView
+                android:id="@+id/ivQrCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:contentDescription="Payment QR code"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBack"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="New code"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            app:cornerRadius="12dp"
+            app:strokeColor="@color/outline"
+            android:textColor="@color/text_primary"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
