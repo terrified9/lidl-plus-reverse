@@ -10,3 +10,4 @@ I used [HTTP Toolkit](https://httptoolkit.tech/) to intercept the network traffi
 ## TODO
 - [ ] Add coupon support
 - [ ] Add other regions
+- [ ] Make a basic Android app
