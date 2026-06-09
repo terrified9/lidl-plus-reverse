@@ -41,7 +41,7 @@ def get_pin_token(bearer, pin):
     if response.status_code == 200:
         return response.json().get("token")
 
-def generate_qr_code(bearer, token, loyalty_id, payment_method_id):
+def generate_qr_code(bearer, token, loyalty_id, payment_method_id, digital_receipt=False):
     url = "https://payments.lidlplus.com/payment-methods/v2/lidl/ES/store/qr"
     headers = {
         "Accept-Encoding": "gzip",
@@ -56,7 +56,7 @@ def generate_qr_code(bearer, token, loyalty_id, payment_method_id):
     }
     response = requests.post(url, headers=headers, json=request_body)
     if response.status_code == 200:
-        return response.json().get("paymentQR")
+        return response.json().get("paymentQR") + ("1" if digital_receipt else "0")
 
 def activate_lidl_pay(bearer):
     url = "https://payments.lidlplus.com/user-profiles/v3/lidl/ES/store/activate"
@@ -91,7 +91,7 @@ def main():
     pin_token = get_pin_token(bearer, pin)
     print(pin_token)
 
-    qr_code = generate_qr_code(bearer, pin_token, loyalty_id, payments_methods[0]["id"])
+    qr_code = generate_qr_code(bearer, pin_token, loyalty_id, payments_methods[0]["id"], True)
     print(qr_code)
 
     is_activated = activate_lidl_pay(bearer)
